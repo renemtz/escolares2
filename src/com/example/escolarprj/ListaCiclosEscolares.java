@@ -1,22 +1,25 @@
 package com.example.escolarprj;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.ExpandableListView;
 
-public class Calendario extends ActionBarActivity {
+import com.entidades.CicloEscolar;
+import com.utilerias.MyExpandableListAdapter;
 
+public class ListaCiclosEscolares extends ActionBarActivity {
+	SparseArray<CicloEscolar> groups = new SparseArray<CicloEscolar>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_calendario);
+		setContentView(R.layout.activity_lista_ciclos_escolares);
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
@@ -28,9 +31,27 @@ public class Calendario extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.calendario, menu);
+		getMenuInflater().inflate(R.menu.lista_ciclos_escolares, menu);
+		
+		createData();
+	    ExpandableListView listView = (ExpandableListView) findViewById(R.id.listView);
+	    MyExpandableListAdapter adapter = new MyExpandableListAdapter(this,
+	        groups);
+	    listView.setAdapter(adapter);
+		
+		
 		return true;
 	}
+	
+	public void createData() {
+	    for (int j = 0; j < 5; j++) {
+	      CicloEscolar group = new CicloEscolar("Semestre " + j);
+	      for (int i = 0; i < 5; i++) {
+	        group.children.add("Materia " + i);
+	      }
+	      groups.append(j, group);
+	    }
+	  }
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -55,8 +76,8 @@ public class Calendario extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_calendario,
-					container, false);
+			View rootView = inflater.inflate(
+					R.layout.fragment_lista_ciclos_escolares, container, false);
 			return rootView;
 		}
 	}

@@ -1,18 +1,26 @@
 package com.example.escolarprj;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
+import java.util.Calendar;
+
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.DatePicker;
+import android.widget.EditText;
 
 public class MainActivity extends ActionBarActivity {
-
+	EditText txt;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +31,7 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        
     }
 
 
@@ -31,6 +40,10 @@ public class MainActivity extends ActionBarActivity {
         
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        txt = (EditText) findViewById(R.id.editInicioCicloEscolar);
+        System.out.println("Texto: "+txt.getText().toString());
+        Intent i = new Intent(this, RegistroCicloEscolar.class );
+        startActivity(i);
         return true;
     }
 
@@ -60,6 +73,40 @@ public class MainActivity extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }
+    }
+    
+    public void showDatePickerDialog(View v) {
+    	DatePickerFragment newFragment = new DatePickerFragment();
+    	newFragment.setEditText(txt);
+	    newFragment.show(getSupportFragmentManager(), "datePicker");
+	    
+	}
+    
+    @SuppressLint({ "NewApi", "ValidFragment" })
+    private class DatePickerFragment extends DialogFragment implements
+			DatePickerDialog.OnDateSetListener {
+    	EditText editTextFecha;
+		
+		public void setEditText(EditText editText){
+			editTextFecha=editText;
+		}
+		
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			// Use the current date as the default date in the picker
+			final Calendar c = Calendar.getInstance();
+			int year = c.get(Calendar.YEAR);
+			int month = c.get(Calendar.MONTH);
+			int day = c.get(Calendar.DAY_OF_MONTH);
+		
+			// Create a new instance of DatePickerDialog and return it
+			return new DatePickerDialog(getActivity(), this, year, month, day);
+		}
+		
+		public void onDateSet(DatePicker view, int year, int month, int day) {
+			// Do something with the date chosen by the user
+			editTextFecha.setText(day+"/"+month+1+"/"+year);
+		}
     }
 
 }

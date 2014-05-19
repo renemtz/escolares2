@@ -26,6 +26,18 @@
             android:name="com.example.escolarprj.Calendario"
             android:label="@string/title_activity_calendario" >
         </activity>
+        <activity
+            android:name="com.example.escolarprj.RegistroProfesor"
+            android:label="@string/title_activity_registro_profesor" >
+        </activity>
+        <activity
+            android:name="com.example.escolarprj.RegistroCicloEscolar"
+            android:label="@string/title_activity_registro_ciclo_escolar" >
+        </activity>
+        <activity
+            android:name="com.example.escolarprj.ListaCiclosEscolares"
+            android:label="@string/title_activity_lista_ciclos_escolares" >
+        </activity>
     </application>
 
 </manifest>

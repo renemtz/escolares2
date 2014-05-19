@@ -5,5 +5,18 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_calendario">Calendario</string>
+    <string name="title_activity_registro_profesor">RegistroProfesor</string>
+    <string name="nombre">Nombre</string>
+    <string name="paterno">Apellido paterno</string>
+    <string name="materno">Apellido materno</string>
+    <string name="email">Email</string>
+    <string name="telefono">Teléfono</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="title_activity_registro_ciclo_escolar">RegistroCicloEscolar</string>
+    <string name="inicio">Inicio</string>
+    <string name="fin">Fin</string>
+    <string name="title_activity_lista_ciclos_escolares">ListaCiclosEscolares</string>
+    <string name="ciclosEscolares">Ciclos escolares</string>
 
 </resources>
