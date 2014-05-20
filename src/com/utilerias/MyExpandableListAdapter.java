@@ -1,6 +1,6 @@
 package com.utilerias;
 
-import com.entidades.CicloEscolar;
+import com.entidades.Grupo;
 import com.example.escolarprj.R;
 
 import android.app.Activity;
@@ -16,11 +16,11 @@ import android.widget.Toast;
 
 public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
-  private final SparseArray<CicloEscolar> groups;
+  private final SparseArray<Grupo> groups;
   public LayoutInflater inflater;
   public Activity activity;
 
-  public MyExpandableListAdapter(Activity act, SparseArray<CicloEscolar> groups) {
+  public MyExpandableListAdapter(Activity act, SparseArray<Grupo> groups) {
     activity = act;
     this.groups = groups;
     inflater = act.getLayoutInflater();
@@ -92,7 +92,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
     if (convertView == null) {
       convertView = inflater.inflate(R.layout.lista_grupo, null);
     }
-    CicloEscolar group = (CicloEscolar) getGroup(groupPosition);
+    Grupo group = (Grupo) getGroup(groupPosition);
     ((CheckedTextView) convertView).setText(group.string);
     ((CheckedTextView) convertView).setChecked(isExpanded);
     return convertView;

@@ -11,11 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
-import com.entidades.CicloEscolar;
+import com.entidades.Grupo;
 import com.utilerias.MyExpandableListAdapter;
 
 public class ListaCiclosEscolares extends ActionBarActivity {
-	SparseArray<CicloEscolar> groups = new SparseArray<CicloEscolar>();
+	SparseArray<Grupo> groups = new SparseArray<Grupo>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,7 +45,7 @@ public class ListaCiclosEscolares extends ActionBarActivity {
 	
 	public void createData() {
 	    for (int j = 0; j < 5; j++) {
-	      CicloEscolar group = new CicloEscolar("Semestre " + j);
+	      Grupo group = new Grupo("Semestre " + j);
 	      for (int i = 0; i < 5; i++) {
 	        group.children.add("Materia " + i);
 	      }
